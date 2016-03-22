@@ -20,6 +20,5 @@ Recognition, 7988, 27-41.
 
 1. Make sure you have installed Studio.  
 2. Double click the `Final_Project.Rproj`  
-3. `source("svmRegression_mixed.R")`or other R scripts. 
-
-![](./doc/sample.png)
+3. `source("svmRegression_mixed.R")`or other R scripts. ![](./doc/sample.png)  
+4. or you can run the script in command line `➜  Final_Project_479 git:(master) Rscript classification_auto.R` ![](./doc/commandline.png)
