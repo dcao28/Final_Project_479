@@ -3,8 +3,8 @@ dji<-read.table(file = "dow_jones_index/dow_jones_index.data",sep = ",",header =
                                 ,"character","character","numeric","numeric","numeric","numeric"
                                 ,"character","character","numeric","numeric","numeric"))
 head(dji)
-library(dplyr)
-library(quantmod)
+suppressMessages(library(dplyr))
+suppressMessages(library(quantmod))
 dji<-mutate(dji,date = as.Date(dji$date,format= "%m/%d/%Y"))  
 price_loc <- c(4:7,12:13)
 

@@ -50,7 +50,7 @@ mixSVMR<-function(lag_num,kernel,insampletest=TRUE,corlags){
     lagDD <- mutate(lagDD,DD= tail(classDD,dim(lagDD)[1]))
     lagDD <- cbind(lagDD,head(lagX,dim(lagDD)[1]))##combine highly correlated stocks
     new <- predict(m,lagDD[,-1])
-    print(paste(kernel,"static svm outsample","the P.E. raio is"
+    print(paste(kernel,"static mixed-svm outsample","the P.E. raio is"
                 ,sum(new != tail(classDD,dim(lagDD)[1]))/length(new),sep=" "))
   }
   return(new)
@@ -94,7 +94,7 @@ mixRollSVMR<-function(lag_num,kernel,roll_num,insampletest=TRUE,corlags){
       new <-c(new,p)
     }
     new <- as.factor(as.numeric(new))
-    print(paste(kernel,"rolling svm outsample","the P.E. raio is"
+    print(paste(kernel,"rolling mixed-svm outsample","the P.E. raio is"
                 ,sum(new != tail(classDD,length(new)))/length(new),sep=" "))
   }
   return(new)

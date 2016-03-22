@@ -20,4 +20,6 @@ Recognition, 7988, 27-41.
 
 1. Make sure you have installed Studio.  
 2. Double click the `Final_Project.Rproj`  
-3. `source("svmRegression_mixed.R")`
+3. `source("svmRegression_mixed.R")`or other R scripts. 
+
+![](./doc/sample.png)
