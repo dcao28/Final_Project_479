@@ -37,22 +37,20 @@ lines(cl$CAT)
 lines(cl$DIS)
 lines(cl$TRV)
 
-### create lagged inputs(Next() in quantmod)
+### create lagged inputs  (lag() in quantmod)
 lagx<-function(stock,lag,insample=TRUE){
+  x <- eval(expr = parse(text = paste("cl$",stock,sep = "")))
   if(insample){
-    x <- eval(expr = parse(text = paste("cl$",stock,sep = "")))
     org.len<-length(x)
-    lagxs<-lapply(c(0,seq(lag)), function(i) {ret_loc<- (i+1):(org.len-(lag-i)) 
-    x[ret_loc]})
-    as.data.frame(lagxs)
+    lagxs<-lapply(c(0,seq(lag)), function(i) lag(x,i))
+    as.data.frame(lagxs)[-c(1:lag),]
   }else{
-    x <- eval(expr = parse(text = paste("cl.test$",stock,sep = "")))
+    x.t <- eval(expr = parse(text = paste("cl.test$",stock,sep = "")))
+    x <- rbind(tail(x,lag),x.t)
     org.len<-length(x)
-    lagxs<-lapply(c(0,seq(lag)), function(i) {ret_loc<- (i+1):(org.len-(lag-i)) 
-    x[ret_loc]})
-    as.data.frame(lagxs)
+    lagxs<-lapply(c(0,seq(lag)), function(i)lag(x,i))
+    as.data.frame(lagxs)[-c(1:lag),]
   }
 }
 
-
-
+lagx("DD",3,insample = FALSE)

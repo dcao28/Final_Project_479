@@ -48,8 +48,8 @@ mixSVMR<-function(lag_num,kernel,insampletest=TRUE,corlags){
 
 
 lag_num=5
-mixSVMR(lag_num,"radial",insampletest = FALSE,corlags=3)
-mixSVMR(lag_num,"polynomial",insampletest = FALSE,corlags=3)  
+mixSVMR(lag_num,"radial",insampletest = FALSE,corlags=4)
+mixSVMR(lag_num,"polynomial",insampletest = FALSE,corlags=4)  
 
 
 
@@ -95,8 +95,8 @@ mixRollSVMR<-function(lag_num,kernel,roll_num,insampletest=TRUE,corlags){
   return(new)
 }
 
-mixRollSVMR(lag_num = 5,"radial",insampletest = FALSE,roll_num = 7,corlags=3)  
-mixRollSVMR(lag_num = 5,"polynomial",insampletest = FALSE,roll_num = 7,corlags=3)  
+mixRollSVMR(lag_num = 7,"radial",insampletest = FALSE,roll_num = 5,corlags=3)  
+mixRollSVMR(lag_num = 7,"polynomial",insampletest = FALSE,roll_num = 5,corlags=3)  
 
 
 

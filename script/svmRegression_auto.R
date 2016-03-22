@@ -16,7 +16,6 @@ autoSVMR<-function(lag_num,kernel,insampletest=TRUE){
     lines(new,type = "b") 
     print(paste(kernel,"static svm insample","the S.E is",sum((new-lagDD[,1])^2),sep = " "))
   }else{
-    
     lagDD<-lagx("DD",lag_num,insample=FALSE)
     lagDD<-.xts(x = lagDD,index = as.Date(rownames(lagDD),format="%Y-%m-%d"))  
     
