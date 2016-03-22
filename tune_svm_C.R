@@ -1,8 +1,10 @@
 source("clean.R")
 library(e1071)
 library(caret)
-library(pROC)
+library(pROC)#for classification
 
+
+#the tune is based on the insample data
 pkgs <- c('foreach', 'doParallel')
 lapply(pkgs, require, character.only = T)
 registerDoParallel(cores = 4)
