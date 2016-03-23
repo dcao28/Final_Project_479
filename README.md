@@ -22,6 +22,7 @@ Recognition, 7988, 27-41.
 3. `classification_auto.R` is the svm classification method in which the response value of a factor variable whose level takes -1 or 1 to symbolize the direction of stock price change. Likewise, the inputs are only the lagged value of the response variable.   
 4. `classification_mixed.R` is the svm classification method in which the response value of a factor variable whose level takes -1 or 1 to symbolize the direction of stock price change. Likewise, the inputs includes other lagged highly correlated stock prices rather than just lagged response variable.
 5. The `tune.R` is still being worked on. It is supposed to tune the parameters of svm kernel funcions.
+6. The `Gaussionkpca+svmR.R` refers to the combined method in which I use KPCA to reconstruct the **mixed** inputs which will be put into svm regression. The reason why I did not consider the **auto** inputs is because from the results of above script, the mixed inputs give out a better performance.  
 
 ## How to use 
 
