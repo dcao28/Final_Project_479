@@ -35,7 +35,10 @@ Recognition, 7988, 27-41.
 1. it is easy to understand what "auto" or "mixed" mean, if you have read the above section. 
 2. "static" means I only use the insample data to train the svm and predicted the future prices by the same svm.  
 3. "rolling" means I use the latest several(the rolling window number) data to train the svm everytime I predict the one step forward future price.  
-4. Additionally, you can tell whether it is about regression or classification by the name of the R scripts.
+4. "outsample" means the result is in the outsample(test data) period.
+5. Additionally, you can tell whether it is about regression or classification by the name of the R scripts.  
+6. "PE ratio" refers to the prediction error ratio which only applies to the classification problem.  
+7. "MSE" refers to the mean squared errors which only applies to the regression problem.
 
 
 
