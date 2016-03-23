@@ -5,6 +5,7 @@ use kernel trick to solve the customized problems
 
 1. SVM Regression (prediction of future price) 
 2. SVM Classification(prediction of future direction)
+3. KPCA + SVM (apply KPCA to reconstruct the inputs.)
 
 ## Data: Dow Jones Index Stock Sets  
 
