@@ -29,3 +29,14 @@ Recognition, 7988, 27-41.
 2. Double click the `Final_Project.Rproj`  
 3. `source("svmRegression_mixed.R")`or other R scripts. ![](./doc/sample.png)  
 4. or you can run the script in command line `➜  Final_Project_479 git:(master) Rscript classification_auto.R` ![](./doc/commandline.png)
+
+## How to interpret the results
+
+1. it is easy to understand what "auto" or "mixed" mean, if you have read the above section. 
+2. "static" means I only use the insample data to train the svm and predicted the future prices by the same svm.  
+3. "rolling" means I use the latest several(the rolling window number) data to train the svm everytime I predict the one step forward future price.  
+4. Additionally, you can tell whether it is about regression or classification by the name of the R scripts.
+
+
+
+
