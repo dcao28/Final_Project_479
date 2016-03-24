@@ -27,8 +27,8 @@ autoSVMR<-function(lag_num,kernel,insampletest=TRUE){
 }
 
 lag_num=6
-autoSVMR(lag_num,"radial",insampletest = FALSE)
-autoSVMR(lag_num,"polynomial",insampletest = FALSE)
+autoSVMR(lag_num,"radial",insampletest = TRUE)
+autoSVMR(lag_num,"polynomial",insampletest = TRUE)
 
 
 ### rolling svm outsample estimate(windows<=7)
