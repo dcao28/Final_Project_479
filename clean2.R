@@ -9,7 +9,7 @@ dji<-mutate(dji,date = as.Date(dji$date,format= "%m/%d/%Y"))
 price_loc <- c(4:7,12:13)
 
 s<-sapply(dji[price_loc], function(x){ strip<-sub("^\\$",replacement = "",x = x)
-                                    return(as.numeric(strip))})
+return(as.numeric(strip))})
 dji[price_loc] <- s
 
 ### split the stock  
@@ -26,6 +26,31 @@ cl.test<-.xts(cl.test,index = stocks.test$DD$date)
 ###choose highly related stocks
 highcorr<-(cor(cl)>0.9 & cor(cl)<1 )
 which.max(rowSums(highcorr))
+print(paste("the highly correlated stocks associated with DD are"
+            ,paste(colnames(highcorr)[highcorr[which.max(rowSums(highcorr)),]]
+                   ,collapse =" ")))
+print(cor(cl)[8,highcorr[which.max(rowSums(highcorr)),]])
+
+
+
+
+plot(cl$DD,lty=1,ylim = c(30,130),
+     main= "the highly correlated stocks in train_period")
+lines(cl$CAT, lty = 2,lwd=2)
+lines(cl$DIS,lty=3,lwd=2)
+lines(cl$TRV, lty=4,lwd=2)  
+legend("topleft",c("DD","CAT","DIS","TRV")
+       ,lty = c(1,2,3,4)
+       ,horiz = T)
+
+plot(cl.test$DD,lty=1,ylim = c(30,130),
+     main= "the highly correlated stocks in test_period")
+lines(cl.test$CAT, lty = 2,lwd=2)
+lines(cl.test$DIS,lty=3,lwd=2)
+lines(cl.test$TRV, lty=4,lwd=2)  
+legend("topleft",c("DD","CAT","DIS","TRV")
+       ,lty = c(1,2,3,4)
+       ,horiz = T)
 
 ### create lagged inputs  (lag() in quantmod)
 lagx<-function(stock,lag,insample=TRUE){

@@ -20,15 +20,15 @@ autoSVMR<-function(lag_num,kernel,insampletest=TRUE){
     lagDD<-lagx("DD",lag_num,insample=FALSE)
     lagDD <- mutate(lagDD,DD= tail(classDD,dim(lagDD)[1]))
     new <- predict(m,lagDD[,-1])
-    print(paste(kernel,"static svm outsample","the P.E. raio is"
+    print(paste("lag",lag_num,kernel,"static svm outsample","the P.E. raio is"
                 ,sum(new != tail(classDD,dim(lagDD)[1]))/length(new),sep=" "))
   }
   return(new)
 }
 
-lag_num=6
-autoSVMR(lag_num,"radial",insampletest = TRUE)
-autoSVMR(lag_num,"polynomial",insampletest = TRUE)
+lag_num=5
+autoSVMR(lag_num,"radial",insampletest = FALSE)
+#autoSVMR(lag_num,"polynomial",insampletest = TRUE)
 
 
 ### rolling svm outsample estimate(windows<=7)
@@ -54,14 +54,14 @@ rollSVMR<-function(lag_num,kernel,roll_num,insampletest=TRUE){
     }
     
     new <- as.factor(as.numeric(new))
-    print(paste(kernel,"rolling svm outsample","the P.E. raio is"
+    print(paste("lag",lag_num,kernel,"rolling svm outsample","the P.E. raio is"
                 ,sum(new != tail(classDD,length(new)))/length(new),sep=" "))
   }
   return(new)
 }
 
 rollSVMR(lag_num = 5,"radial",insampletest = FALSE,roll_num = 8)  
-rollSVMR(lag_num = 5,"polynomial",insampletest = FALSE,roll_num = 8)  
+#rollSVMR(lag_num = 5,"polynomial",insampletest = FALSE,roll_num = 8)  
 
 
 

@@ -12,8 +12,9 @@ autoSVMR<-function(lag_num,kernel,insampletest=TRUE){
     new <- predict(m, lagDD[,-1])
     new <-.xts(new,index = as.Date(rownames(lagDD),format="%Y-%m-%d"))
     
-    plot(lagDD[,1],ylim=c(45,60),main="DD and in_sample estimate")
+    plot(lagDD[,1],ylim=c(45,60),main="DD and in_sample estimate",type = "l")
     lines(new,type = "b") 
+    legend("topright",c("Real","Prediction"),type = c("l","b"))
     print(paste(kernel,"static svm insample","the MSE is",sum((new-lagDD[,1])^2)/length(new),sep = " "))
   }else{
     lagDD<-lagx("DD",lag_num,insample=FALSE)
@@ -23,9 +24,10 @@ autoSVMR<-function(lag_num,kernel,insampletest=TRUE){
     new <-.xts(new,index = as.Date(rownames(lagDD),format="%Y-%m-%d"))
     
     lim<-c(min(c(as.vector(new),as.vector(lagDD[,1]))),max(c(as.vector(new),as.vector(lagDD[,1]))))
-    plot(lagDD[,1],main="DD and out_sample estimate",type ="l",ylim=lim)
-    lines(new,type = "b") 
-    print(paste(kernel,"static svm outsample","the MSE is",sum((new-lagDD[,1])^2)/length(new),sep=" "))
+    plot(lagDD[,1],main="DD and out_sample estimate",lty = 1,ylim=lim)
+    lines(new,lty = 2) 
+    legend("topright",c("real","prediction"),lty=c(1,2))
+    print(paste("lag",lag_num,kernel,"static svm outsample","the MSE is",sum((new-lagDD[,1])^2)/length(new),sep=" "))
   }
   return(new)
 }
@@ -59,9 +61,10 @@ rollSVMR<-function(lag_num,kernel,roll_num,insampletest=TRUE){
     new <-.xts(new,index = as.Date(rownames(lagDD.test),format="%Y-%m-%d"))
     
     lim<-c(min(c(as.vector(new),as.vector(lagDD.test[,1]))),max(c(as.vector(new),as.vector(lagDD.test[,1]))))
-    plot(lagDD.test[,1],main="DD and out_sample estimate",type ="l",ylim=lim)
-    lines(new,type = "b") 
-    print(paste(kernel,"rolling svm outsample","the MSE is",sum((new-lagDD.test[,1])^2)/length(new)),sep="")
+    plot(lagDD.test[,1],main="DD and out_sample estimate",lty=1,ylim=lim)
+    lines(new,lty=2) 
+    legend("topright",c("real","prediction"),lty=c(1,2))
+    print(paste("lag",lag_num,kernel,"rolling svm outsample","the MSE is",sum((new-lagDD.test[,1])^2)/length(new)),sep="")
   }
   return(new)
 }

@@ -1,0 +1,57 @@
+---
+title: "result"
+author: "Dingxian Cao"
+date: "April 5, 2016"
+output: html_document
+---
+
+## 1.data process  
+
+```{r}
+source("clean2.R")
+```
+
+## 2.classification-SVM 
+
+### 2.1 Use lag items of DD as inputs  
+
+```{r}
+source("classification_auto.R")
+```  
+
+### 2.2 Use mixed lag items as inputs
+
+```{r}
+source("classification_mixed.R")
+```  
+
+## 3. Regression-SVM  
+
+### 3.1 Use lag items of DD as inputs  
+
+```{r} 
+source("svmRegression_auto.R")
+```  
+
+
+### 3.2 Use mixed lag items as inputs  
+
+```{r}  
+source("svmRegression_mixed.R")
+```
+
+
+## 4. KPCA+RegressionSVM  
+
+```{r}  
+source("Gaussionkpca+svmR.R")
+```
+
+
+
+
+
+
+
+
+

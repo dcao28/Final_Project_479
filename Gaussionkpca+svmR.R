@@ -58,22 +58,19 @@ mixSVMR<-function(lag_num,kernel,insampletest=TRUE,corlags){
     lagDD2 <- predict(kpc,lagDD[,-1])# outsample KPCA
     new <- predict(m,lagDD2)
     new <-.xts(new,index = as.Date(rownames(lagDD),format="%Y-%m-%d"))
-    
+    print(new)
     lim<-c(min(c(as.vector(new),as.vector(lagDD[,1]))),max(c(as.vector(new),as.vector(lagDD[,1]))))
     plot(lagDD[,1],main="DD and out_sample estimate",type ="l",ylim=lim)
     lines(new,type = "b") 
-    print(paste(kernel,"static mixed-kpca+svm outsample","the MSE is",sum((new-lagDD[,1])^2)/length(new),sep=" "))
+    print(paste("lag",lag_num,",",corlags,kernel,"static mixed-kpca+svm outsample","the MSE is",sum((new-lagDD[,1])^2)/length(new),sep=" "))
   }
-  return(new)
+  #return(new)
 }
 
 
 lag_num=5
 mixSVMR(lag_num,"radial",insampletest = FALSE,corlags=4)
-mixSVMR(lag_num,"polynomial",insampletest = FALSE,corlags=4)  
-
-
-
+#mixSVMR(lag_num,"polynomial",insampletest = FALSE,corlags=4)  
 
 ### mixed rolling svm outsample estimate(windows<=7)
 mixRollSVMR<-function(lag_num,kernel,roll_num,insampletest=TRUE,corlags){
@@ -115,13 +112,13 @@ mixRollSVMR<-function(lag_num,kernel,roll_num,insampletest=TRUE,corlags){
     lim<-c(min(c(as.vector(new),as.vector(lagDD.test[,1]))),max(c(as.vector(new),as.vector(lagDD.test[,1]))))
     plot(lagDD.test[,1],main="DD and out_sample estimate",type ="l",ylim=lim)
     lines(new,type = "b") 
-    print(paste(kernel,"rolling mixed-kpca+svm outsample","the MSE is",sum((new-lagDD.test[,1])^2)/length(new)),sep="")
+    print(paste("lag",lag_num,",",corlags,kernel,"rolling mixed-kpca+svm outsample","the MSE is",sum((new-lagDD.test[,1])^2)/length(new)),sep="")
   }
-  return(new)
+  #return(new)
 }
 
-mixRollSVMR(lag_num = 4,"radial",insampletest = FALSE,roll_num = 5,corlags=3)  
-mixRollSVMR(lag_num = 4,"polynomial",insampletest = FALSE,roll_num = 5,corlags=3)  
+mixRollSVMR(lag_num = 5,"radial",insampletest = FALSE,roll_num = 5,corlags=4)  
+#mixRollSVMR(lag_num = 4,"polynomial",insampletest = FALSE,roll_num = 5,corlags=3)  
 
 
 
