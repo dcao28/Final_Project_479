@@ -108,7 +108,7 @@ mixRollSVMR<-function(lag_num,kernel,roll_num,insampletest=TRUE,corlags){
     legend("topright",c("real","prediction"),lty=c(1,2))
     print(paste("lag",lag_num,",",corlags,kernel,"rolling mixed-svm outsample","the MSE is",sum((new-lagDD.test[,1])^2)/length(new)),sep="")
   }
-  #return(new)
+  return(new)
 }
 
 mixRollSVMR(lag_num = 5,"radial",insampletest = FALSE,roll_num = 5,corlags=4)  

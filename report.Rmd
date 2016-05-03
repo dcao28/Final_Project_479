@@ -2,7 +2,9 @@
 title: "result"
 author: "Dingxian Cao"
 date: "April 5, 2016"
-output: html_document
+output: 
+  html_document: 
+    toc: yes
 ---
 
 ## 1.data process  
@@ -49,6 +51,25 @@ source("Gaussionkpca+svmR.R")
 
 
 
+
+## 5. Tune 
+
+
+```{r}  
+source("tune_svm_auto.R")  
+source("tune_svm_auto.R")  
+``` 
+
+## 6. svmRegression_mixed vs classification
+
+```{r}
+source("svmRegression_mixed.R")
+new<-mixRollSVMR(lag_num = 5,"radial",insampletest = FALSE,roll_num = 5,corlags=4)  
+sign(diff(new))
+sign(diff(cl.test$DD))
+error<- ifelse(sign(diff(new))== sign(diff(cl.test$DD)),0,1)
+(sum(error,na.rm = T)+1)/(length(error[-1])+1)
+```
 
 
 
